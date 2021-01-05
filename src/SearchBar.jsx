@@ -1,10 +1,10 @@
 import React from "react";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   return (
     <div>
-      <input type="text" name="searchbar" />
-      <input type="checkbox" name="seachbar-checkbox" />
+      <input type="text" name="searchbar" value={props.filterText}/>
+      <input type="checkbox" name="seachbar-checkbox" checked={props.inStockOnly}/>
       <label>Only show products in stock</label>
     </div>
   );

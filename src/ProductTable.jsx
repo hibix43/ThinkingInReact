@@ -3,7 +3,7 @@ import ProductCategoryRow from "./ProductCategoryRow";
 import ProductRow from "./ProductRow";
 
 const ProductTable = (props) => {
-  const productsByCategory = groupingProductsByCategory(props.products);
+  const productsByCategory = groupingProductsByCategory(props.products, props.filterText, props.inStockOnly);
   const rows = convertProductsToRow(productsByCategory);
   return (
     <table>
@@ -18,14 +18,16 @@ const ProductTable = (props) => {
   );
 };
 
-const groupingProductsByCategory = (products) => {
+const groupingProductsByCategory = (products, filterText, inStockOnly) => {
   const productsByCategory = {};
   products.forEach((element) => {
     const { category, ...data } = element;
     if (!Object.keys(productsByCategory).includes(category)) {
       productsByCategory[category] = [];
     }
-    productsByCategory[category].push(data);
+    if (data.name.includes(filterText) && data.stocked == inStockOnly) {
+      productsByCategory[category].push(data);
+    }
   });
   return productsByCategory;
 };

@@ -1,10 +1,20 @@
 import React from "react";
 
-const SearchBar = (props) => {
+const SearchBar = ({filterText, inStockOnly, setFilterText, setInStockOnly}) => {
   return (
     <div>
-      <input type="text" name="searchbar" value={props.filterText}/>
-      <input type="checkbox" name="seachbar-checkbox" checked={props.inStockOnly}/>
+      <input
+        type="text"
+        name="searchbar"
+        value={filterText}
+        onChange={(e) => setFilterText(e.target.value)}
+      />
+      <input
+        type="checkbox"
+        name="seachbar-checkbox"
+        checked={inStockOnly}
+        onChange={(e) => setInStockOnly(e.target.checked)}
+      />
       <label>Only show products in stock</label>
     </div>
   );

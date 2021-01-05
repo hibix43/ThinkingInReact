@@ -25,7 +25,7 @@ const groupingProductsByCategory = (products, filterText, inStockOnly) => {
     if (!Object.keys(productsByCategory).includes(category)) {
       productsByCategory[category] = [];
     }
-    if (data.name.includes(filterText) && data.stocked == inStockOnly) {
+    if (data.name.includes(filterText) && (!inStockOnly || (inStockOnly && data.stocked))) {
       productsByCategory[category].push(data);
     }
   });

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import ProductTable from "./ProductTable";
 
-const FilterableProductTable = (props) => {
+const FilterableProductTable = ({ products }) => {
   const [filterText, setFilterText] = useState("");
   const [inStockOnly, setInStockOnly] = useState(false);
 
@@ -15,7 +15,7 @@ const FilterableProductTable = (props) => {
         setInStockOnly={setInStockOnly}
       />
       <ProductTable
-        products={props.products}
+        products={products}
         filterText={filterText}
         inStockOnly={inStockOnly}
       />

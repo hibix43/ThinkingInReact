@@ -1,6 +1,11 @@
 import React from "react";
 
-const SearchBar = ({filterText, inStockOnly, setFilterText, setInStockOnly}) => {
+const SearchBar = ({
+  filterText,
+  inStockOnly,
+  setFilterText,
+  setInStockOnly,
+}) => {
   return (
     <div>
       <input

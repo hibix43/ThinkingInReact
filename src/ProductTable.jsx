@@ -2,8 +2,12 @@ import React from "react";
 import ProductCategoryRow from "./ProductCategoryRow";
 import ProductRow from "./ProductRow";
 
-const ProductTable = (props) => {
-  const productsByCategory = groupingProductsByCategory(props.products, props.filterText, props.inStockOnly);
+const ProductTable = ({ products, filterText, inStockOnly }) => {
+  const productsByCategory = groupingProductsByCategory(
+    products,
+    filterText,
+    inStockOnly
+  );
   const rows = convertProductsToRow(productsByCategory);
   return (
     <table>
@@ -25,7 +29,10 @@ const groupingProductsByCategory = (products, filterText, inStockOnly) => {
     if (!Object.keys(productsByCategory).includes(category)) {
       productsByCategory[category] = [];
     }
-    if (data.name.includes(filterText) && (!inStockOnly || (inStockOnly && data.stocked))) {
+    if (
+      data.name.includes(filterText) &&
+      (!inStockOnly || (inStockOnly && data.stocked))
+    ) {
       productsByCategory[category].push(data);
     }
   });
@@ -51,6 +58,6 @@ const convertProductsToRow = (productsByCategory) => {
       })
     );
   });
-}
+};
 
 export default ProductTable;

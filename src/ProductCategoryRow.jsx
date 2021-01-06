@@ -1,9 +1,9 @@
 import React from "react";
 
-const ProductCategoryRow = (props) => {
+const ProductCategoryRow = ({ name }) => {
   return (
     <tr>
-      <th colSpan="2">{props.name}</th>
+      <th colSpan="2">{name}</th>
     </tr>
   );
 };

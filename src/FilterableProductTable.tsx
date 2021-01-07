@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import ProductTable from "./ProductTable";
 
-const FilterableProductTable = ({ products }) => {
+export type Product = {
+  category: string
+  price: string
+  stocked: boolean
+  name: string
+};
+
+// ({ products }) とすると index.tsx 同様に怒られる
+const FilterableProductTable: React.FC<Product[]> = ( products ) => {
   const [filterText, setFilterText] = useState("");
   const [inStockOnly, setInStockOnly] = useState(false);
 

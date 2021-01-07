@@ -1,8 +1,15 @@
 import React from "react";
 import ProductCategoryRow from "./ProductCategoryRow";
 import ProductRow from "./ProductRow";
+import {Product} from "./FilterableProductTable";
 
-const ProductTable = ({ products, filterText, inStockOnly }) => {
+type Props = {
+  products: Product[]
+  filterText: string
+  inStockOnly: boolean
+}
+
+const ProductTable: React.FC<Props> = ({ products, filterText, inStockOnly }) => {
   const productsByCategory = groupingProductsByCategory(
     products,
     filterText,
@@ -22,8 +29,10 @@ const ProductTable = ({ products, filterText, inStockOnly }) => {
   );
 };
 
-const groupingProductsByCategory = (products, filterText, inStockOnly) => {
-  const productsByCategory = {};
+type ProductsByCategory = {[key: string]: Omit<Product, "category">[]};
+
+const groupingProductsByCategory = (products: Product[], filterText: string, inStockOnly: boolean) => {
+  const productsByCategory: ProductsByCategory = {};
   products.forEach((element) => {
     const { category, ...data } = element;
     if (!Object.keys(productsByCategory).includes(category)) {
@@ -39,20 +48,19 @@ const groupingProductsByCategory = (products, filterText, inStockOnly) => {
   return productsByCategory;
 };
 
-const convertProductsToRow = (productsByCategory) => {
+const convertProductsToRow = (productsByCategory: ProductsByCategory) => {
   return Object.keys(productsByCategory).map((categoryName, index) => {
     // 本来は key に id を指定する
     return [
       <ProductCategoryRow key={"category" + index} name={categoryName} />,
     ].concat(
       productsByCategory[categoryName].map((values, index) => {
-        const { name, stocks, price } = values;
+        const { name, price } = values;
         return (
           <ProductRow
             key={categoryName + index}
             name={name}
             price={price}
-            stocks={stocks}
           />
         );
       })

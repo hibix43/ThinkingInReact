@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FilterableProductTable from "./FilterableProductTable";
+import FilterableProductTable, {Product} from "./FilterableProductTable";
 
-const PRODUCTS = [
+const PRODUCTS: Product[] = [
   {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
   {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
   {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
@@ -12,8 +12,9 @@ const PRODUCTS = [
 ];
 
 ReactDOM.render(
+  // <FilterableProductTable products={PRODUCTS}> とすると product プロパティがないと怒られる
   <React.StrictMode>
-    <FilterableProductTable products={PRODUCTS}/>
+    <FilterableProductTable {...PRODUCTS}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

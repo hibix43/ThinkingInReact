@@ -1,6 +1,13 @@
 import React from "react";
 
-const SearchBar = ({
+type Props = {
+  filterText: string
+  inStockOnly: boolean
+  setFilterText: React.Dispatch<React.SetStateAction<string>>
+  setInStockOnly: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const SearchBar: React.FC<Props> = ({
   filterText,
   inStockOnly,
   setFilterText,

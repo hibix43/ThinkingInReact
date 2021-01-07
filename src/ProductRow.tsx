@@ -1,6 +1,11 @@
 import React from "react";
 
-const ProductRow = ({ name, price }) => {
+type Props = {
+  name: string
+  price: string
+}
+
+const ProductRow: React.FC<Props> = ({ name, price }) => {
   return (
     <tr>
       <td>{name}</td>

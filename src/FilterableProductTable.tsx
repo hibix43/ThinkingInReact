@@ -14,13 +14,16 @@ const FilterableProductTable: React.FC<Product[]> = ( products ) => {
   const [filterText, setFilterText] = useState("");
   const [inStockOnly, setInStockOnly] = useState(false);
 
+  const onChangeFilterText = (e: React.ChangeEvent<HTMLInputElement>) => setFilterText(e.target.value)
+  const onChangeInStockOnly = (e: React.ChangeEvent<HTMLInputElement>) => setInStockOnly(e.target.checked)
+
   return (
     <div>
       <SearchBar
         filterText={filterText}
         inStockOnly={inStockOnly}
-        setFilterText={setFilterText}
-        setInStockOnly={setInStockOnly}
+        setFilterText={onChangeFilterText}
+        setInStockOnly={onChangeInStockOnly}
       />
       <ProductTable
         products={products}

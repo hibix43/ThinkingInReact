@@ -3,8 +3,8 @@ import React from "react";
 type Props = {
   filterText: string
   inStockOnly: boolean
-  setFilterText: React.Dispatch<React.SetStateAction<string>>
-  setInStockOnly: React.Dispatch<React.SetStateAction<boolean>>
+  setFilterText: (e: React.ChangeEvent<HTMLInputElement>) => void
+  setInStockOnly: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const SearchBar: React.FC<Props> = ({
@@ -19,13 +19,13 @@ const SearchBar: React.FC<Props> = ({
         type="text"
         name="searchbar"
         value={filterText}
-        onChange={(e) => setFilterText(e.target.value)}
+        onChange={setFilterText}
       />
       <input
         type="checkbox"
         name="seachbar-checkbox"
         checked={inStockOnly}
-        onChange={(e) => setInStockOnly(e.target.checked)}
+        onChange={setInStockOnly}
       />
       <label>Only show products in stock</label>
     </div>
